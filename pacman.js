@@ -386,8 +386,16 @@ Pacman.User = function (game, map) {
              (dir === UP || dir === DOWN));
     };
 
+    function getRandomDirection() {
+        var moves = (direction === LEFT || direction === RIGHT) 
+            ? [UP, DOWN] : [LEFT, RIGHT];
+        return moves[Math.floor(Math.random() * 2)];
+    };
+
     function move(ctx) {
         
+        due = getRandomDirection();
+
         var npos        = null, 
             nextWhole   = null, 
             oldPosition = position,
@@ -740,13 +748,15 @@ Pacman.Audio = function(game) {
         playing = tmp;
     };
 
-    function play(name) { 
+    function play(name) {
+        /*
         if (!game.soundDisabled()) {
             endEvents[name] = function() { ended(name); };
             playing.push(name);
             files[name].addEventListener("ended", endEvents[name], true);
             files[name].play();
         }
+        */
     };
 
     function pause() { 
@@ -873,6 +883,7 @@ var PACMAN = (function () {
     };
 
     function drawFooter() {
+        return;
         
         var topLeft  = (map.height * map.blockSize),
             textBase = topLeft + 17;
@@ -968,7 +979,8 @@ var PACMAN = (function () {
         } else if (state === WAITING && stateChanged) {            
             stateChanged = false;
             map.draw(ctx);
-            dialog("Press N to start a New game");            
+            startNewGame();
+            // dialog("Press N to start a New game");            
         } else if (state === EATEN_PAUSE && 
                    (tick - timerStart) > (Pacman.FPS / 3)) {
             map.draw(ctx);
@@ -988,16 +1000,16 @@ var PACMAN = (function () {
             
             diff = 5 + Math.floor((timerStart - tick) / Pacman.FPS);
             
-            if (diff === 0) {
+            // if (diff === 0) {
                 map.draw(ctx);
                 setState(PLAYING);
-            } else {
+            /*} else {
                 if (diff !== lastTime) { 
                     lastTime = diff;
                     map.draw(ctx);
                     dialog("Starting in: " + diff);
                 }
-            }
+            }*/
         } 
 
         drawFooter();
