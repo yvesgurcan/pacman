@@ -1,5 +1,5 @@
-# pacman
+Pacman
 
-Forked from https://github.com/daleharvey/pacman.
+Source: https://github.com/daleharvey/pacman.
 
 Added bot.
