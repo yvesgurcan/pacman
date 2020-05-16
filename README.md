@@ -1,4 +1,4 @@
-Pacman in the browser. Original code copied from https://github.com/daleharvey/pacman.
+Pacman in the browser. Forked from https://github.com/daleharvey/pacman.
 
 Used on https://www.twitch.tv/yvesgurcan as a waiting screen before the stream starts.
 
